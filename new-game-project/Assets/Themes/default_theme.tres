@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dni3kbhd51ds5"]
+
+[ext_resource type="FontFile" uid="uid://cjicgfmayltlq" path="res://Assets/Fonts/early_gameboy/Early GameBoy.ttf" id="1_fqf8d"]
+
+[resource]
+default_font = ExtResource("1_fqf8d")
+default_font_size = 16
+Button/colors/font_focus_color = Color(0.770625, 0.330801, 0.486075, 1)
+Button/colors/font_hover_color = Color(0.788235, 0.94902, 0.94902, 1)
+Button/colors/font_pressed_color = Color(0.105882, 0.219608, 1, 1)
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
