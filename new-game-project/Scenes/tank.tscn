@@ -68,6 +68,7 @@ _data = {
 size = Vector2(27, 24)
 
 [node name="Tank" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+collision_mask = 4
 script = ExtResource("1_7f80w")
 weapon = NodePath("Weapon")
 

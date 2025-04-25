@@ -1,4 +1,6 @@
 extends CharacterBody2D
+class_name Tank
+## World(Node2D)/Tank(characterbody2D)
 
 const SPEED = 64.0
 const TURN_SPEED = 2
