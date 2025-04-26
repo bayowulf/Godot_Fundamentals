@@ -2,6 +2,10 @@ extends Node2D
 class_name Weapon
 # by adding class name to a script you improve better integration with godot's engine like autocomplete and better visibility
 
+signal reloaded
+signal reload_progress(progress)
+
+
 enum STATES { READY, FIRING, RELOADING }
 
 @export var BULLET_SCENE: PackedScene
@@ -9,6 +13,11 @@ enum STATES { READY, FIRING, RELOADING }
 @onready var reload_timer: Timer = $ReloadTimer
 
 var state: STATES = STATES.READY
+
+func _process(delta):
+	if !reload_timer.is_stopped():
+		reload_progress.emit(1 - (reload_timer.time_left / reload_timer.wait_time))
+		
 
 func change_state(new_state: STATES):
 	state = new_state
@@ -32,3 +41,4 @@ func fire():
 
 func _on_reload_timer_timeout() -> void:
 	change_state(STATES.READY)
+	reloaded.emit()

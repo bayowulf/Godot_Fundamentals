@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c163jmvioe2gt"]
 
-[ext_resource type="Script" uid="uid://bake6jcfvlhp" path="res://Scenes/crate.gd" id="1_i4r3v"]
+[ext_resource type="Script" uid="uid://bake6jcfvlhp" path="res://Scenes/entities/world/crate.gd" id="1_i4r3v"]
 [ext_resource type="Texture2D" uid="uid://bnhy2cmgu1mwn" path="res://Assets/Sprites/crate.png" id="1_wp72f"]
-[ext_resource type="PackedScene" uid="uid://rywm7tbadi66" path="res://Scenes/pickup.tscn" id="2_rdp7h"]
+[ext_resource type="PackedScene" uid="uid://rywm7tbadi66" path="res://Scenes/entities/world/pickup.tscn" id="2_rdp7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4r3v"]
 size = Vector2(16, 16)

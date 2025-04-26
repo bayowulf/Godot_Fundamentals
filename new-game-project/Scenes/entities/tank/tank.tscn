@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://iw3jhcqip82p"]
 
-[ext_resource type="Script" uid="uid://b3n3brbgljr3c" path="res://Scenes/tank.gd" id="1_7f80w"]
+[ext_resource type="Script" uid="uid://b3n3brbgljr3c" path="res://Scenes/entities/tank/tank.gd" id="1_7f80w"]
 [ext_resource type="Texture2D" uid="uid://gk2iv6jdphd2" path="res://Assets/Sprites/tank_body.png" id="1_r30pj"]
-[ext_resource type="PackedScene" uid="uid://dxdgw65mokdh8" path="res://Scenes/weapon.tscn" id="2_7f80w"]
+[ext_resource type="PackedScene" uid="uid://dxdgw65mokdh8" path="res://Scenes/entities/tank/weapon/weapon.tscn" id="2_7f80w"]
 
 [sub_resource type="Animation" id="Animation_42q8f"]
 resource_name = "Idle"
