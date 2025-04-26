@@ -60,6 +60,8 @@ texture_under = SubResource("AtlasTexture_ag0dx")
 texture_progress = SubResource("AtlasTexture_atbq8")
 
 [node name="Menu" type="Control" parent="Control"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,9 +95,34 @@ alignment = 1
 [node name="GridContainer" type="GridContainer" parent="Control/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/h_separation = 16
+columns = 2
 
 [node name="MusicLabel" type="Label" parent="Control/Menu/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+text = "Music
+"
 
 [node name="MusicSlider" type="HSlider" parent="Control/Menu/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SFXLabel" type="Label" parent="Control/Menu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "SFX
+"
+
+[node name="SFXSlider" type="HSlider" parent="Control/Menu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[connection signal="value_changed" from="Control/Menu/MarginContainer/VBoxContainer/GridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Control/Menu/MarginContainer/VBoxContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

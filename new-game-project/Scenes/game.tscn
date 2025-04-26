@@ -22,4 +22,4 @@ position = Vector2(83, 98)
 stream = ExtResource("5_wowpa")
 volume_db = -21.517
 autoplay = true
-bus = &" Music"
+bus = &"Music"

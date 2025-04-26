@@ -14,7 +14,7 @@ enum STATES { READY, FIRING, RELOADING }
 
 var state: STATES = STATES.READY
 
-func _process(delta):
+func _process(_delta):
 	if !reload_timer.is_stopped():
 		reload_progress.emit(1 - (reload_timer.time_left / reload_timer.wait_time))
 		

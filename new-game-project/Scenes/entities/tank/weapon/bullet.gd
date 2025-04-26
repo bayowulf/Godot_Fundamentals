@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 	position += direction.normalized() * SPEED * delta
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	queue_free()
 	
 
