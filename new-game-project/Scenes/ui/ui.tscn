@@ -58,3 +58,44 @@ value = 1.0
 fill_mode = 3
 texture_under = SubResource("AtlasTexture_ag0dx")
 texture_progress = SubResource("AtlasTexture_atbq8")
+
+[node name="Menu" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0901961, 0.0901961, 0.0901961, 0.576471)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_right = 256
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Control/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MusicLabel" type="Label" parent="Control/Menu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="Control/Menu/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2

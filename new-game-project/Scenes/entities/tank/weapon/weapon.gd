@@ -9,8 +9,8 @@ signal reload_progress(progress)
 enum STATES { READY, FIRING, RELOADING }
 
 @export var BULLET_SCENE: PackedScene
-
 @onready var reload_timer: Timer = $ReloadTimer
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var state: STATES = STATES.READY
 
@@ -31,6 +31,7 @@ func fire():
 	var bullet = BULLET_SCENE.instantiate()
 	bullet.direction = Vector2.from_angle(global_rotation)
 	bullet.global_position = global_position
+	audio_player.play()
 	# Add bullt to root scene so that translation is in world space
 	get_tree().root.add_child(bullet)
 	
