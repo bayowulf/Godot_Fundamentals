@@ -1,11 +1,12 @@
 extends CharacterBody2D
 class_name Tank
 ## World(Node2D)/Tank(characterbody2D)
+## BodySprite: has 2 frames - set Hframes -> 2
 
+##AnimationPlayer 
 signal collected(collectable)
 signal reloaded
 signal reload_progress(progress)
-
 
 const SPEED = 64.0
 const TURN_SPEED = 2
@@ -17,15 +18,23 @@ const ROTATE_SPEED = 20
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
 var direction := Vector2.RIGHT
+#speed_modifier is painted onto the terrain (in tilesets and tilemaps)
+var speed_modifier := 1.0
+var debug_speed = null
 
 func _ready() -> void:
 	# NOTE read about lambda functions
+	# 'reloaded' signal is connected to the function 'reloaded.emit()'
 	weapon.reloaded.connect(func (): reloaded.emit())
+	# 'reload_progress' signal is connected to the function 'reload_progress.emit(progress)'
 	weapon.reload_progress.connect(func(progress): reload_progress.emit(progress))
 	
 
 func _physics_process(delta: float) -> void:
+	# Input.get_vector(-x,+x,-y,+y); 
 	var input_direction := Input.get_vector("turn_left","turn_right","move_backward","move_forward")
+	#if input_direction != Vector2.ZERO:
+		#print("input_direction = ", input_direction)
 	if input_direction.x != 0:
 		#rotate direction based on our input vector and applyturn speed
 		#NOTE 'direction' and 'rotation' are Node2D properties
@@ -34,8 +43,16 @@ func _physics_process(delta: float) -> void:
 	if input_direction.y != 0:
 		# Move in a forward/backward direction and play animation
 		animation_player.play("move")
+		#speed_modifier comes from the custom data in the tilemaplayer
+		speed_modifier = World.get_custom_data_at(position, "speed_modifier")
+		
+		var move_speed = SPEED * speed_modifier
+		if debug_speed != move_speed:
+			print("move_speed = ", move_speed)
+			debug_speed = move_speed
+		
 		#NOTE 'velocity' is a Vector2D property
-		velocity = lerp(velocity, (direction.normalized() * input_direction.y) * SPEED, SPEED * delta)
+		velocity = lerp(velocity, (direction.normalized() * input_direction.y) * move_speed, SPEED * delta)
 	else:
 		velocity = Vector2.ZERO
 		animation_player.play("idle")

@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxdgw65mokdh8"]
+[gd_scene load_steps=6 format=3 uid="uid://dxdgw65mokdh8"]
 
 [ext_resource type="Texture2D" uid="uid://cmom60rqsjdif" path="res://Assets/Sprites/tank_weapon.png" id="1_er6cq"]
 [ext_resource type="Script" uid="uid://cqpc2womwmvpt" path="res://Scenes/entities/tank/weapon/weapon.gd" id="1_qv81b"]
 [ext_resource type="PackedScene" uid="uid://ysp6now63nnp" path="res://Scenes/entities/tank/weapon/bullet.tscn" id="2_e1ly8"]
 [ext_resource type="AudioStream" uid="uid://c4yg7aoj71cd4" path="res://Assets/SFX/fire.wav" id="4_w8jkc"]
 
-[node name="Weapon" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8jkc"]
+size = Vector2(21, 6)
+
+[node name="Weapon" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 12
 script = ExtResource("1_qv81b")
 BULLET_SCENE = ExtResource("2_e1ly8")
 
@@ -19,5 +24,9 @@ one_shot = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_w8jkc")
 bus = &"SFX"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14.5, 0)
+shape = SubResource("RectangleShape2D_w8jkc")
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

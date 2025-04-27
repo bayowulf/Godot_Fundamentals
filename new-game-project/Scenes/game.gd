@@ -1,6 +1,9 @@
 extends Node2D
 class_name Game
 
+##to make pixel art sharp and not blurry:Project settings/Rendering/Textures/canvas testures/default: set to 'nearest'
+
+
 @export var tank: Tank
 @export var ui: UI
 
