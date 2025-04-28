@@ -16,11 +16,15 @@ const ROTATE_SPEED = 20
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var body_sprite: Sprite2D = $BodySprite
 @onready var collider: CollisionShape2D = $CollisionShape2D
+@onready var right_track_particles: GPUParticles2D = $RightTrackParticles
+@onready var left_track_particles: GPUParticles2D = $LeftTrackParticles
 
 var direction := Vector2.RIGHT
 #speed_modifier is painted onto the terrain (in tilesets and tilemaps)
 var speed_modifier := 1.0
+var particle_gradient: GradientTexture1D = null
 var debug_speed = null
+
 
 func _ready() -> void:
 	# NOTE read about lambda functions
@@ -43,6 +47,7 @@ func _physics_process(delta: float) -> void:
 	if input_direction.y != 0:
 		# Move in a forward/backward direction and play animation
 		animation_player.play("move")
+		particle_gradient = World.get_gradient_at(position)
 		#speed_modifier comes from the custom data in the tilemaplayer
 		speed_modifier = World.get_custom_data_at(position, "speed_modifier")
 		
@@ -56,6 +61,20 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 		animation_player.play("idle")
+		
+	# add the ability to modify the gradient (of the right and left track particles)
+	# based off what our world states our gradient should be.
+	if particle_gradient and velocity:
+		# enable the emitters 
+		left_track_particles.process_material.color_ramp = particle_gradient
+		right_track_particles.process_material.color_ramp = particle_gradient
+		left_track_particles.emitting = true
+		right_track_particles.emitting = true
+	else:
+		left_track_particles.emitting = false
+		right_track_particles.emitting = false
+		
+		
 	
 	# Apply our movement velocity
 	move_and_slide()

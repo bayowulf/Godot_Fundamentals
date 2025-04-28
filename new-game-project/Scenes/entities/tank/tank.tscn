@@ -1,8 +1,41 @@
-[gd_scene load_steps=10 format=3 uid="uid://iw3jhcqip82p"]
+[gd_scene load_steps=14 format=3 uid="uid://iw3jhcqip82p"]
 
 [ext_resource type="Script" uid="uid://b3n3brbgljr3c" path="res://Scenes/entities/tank/tank.gd" id="1_7f80w"]
 [ext_resource type="Texture2D" uid="uid://gk2iv6jdphd2" path="res://Assets/Sprites/tank_body.png" id="1_r30pj"]
 [ext_resource type="PackedScene" uid="uid://dxdgw65mokdh8" path="res://Scenes/entities/tank/weapon/weapon.tscn" id="2_7f80w"]
+
+[sub_resource type="Gradient" id="Gradient_pr3bd"]
+offsets = PackedFloat32Array(0, 0.28, 0.693333)
+colors = PackedColorArray(1, 1, 1, 1, 0.388235, 0.607843, 1, 1, 0, 0.25098, 0.67451, 0.815686)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_odx6h"]
+gradient = SubResource("Gradient_pr3bd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kfnf6"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(-16, 1, 1)
+direction = Vector3(1, 16, 0)
+spread = 25.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+damping_max = 3.0
+scale_min = 0.25
+color_ramp = SubResource("GradientTexture1D_odx6h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrp3h"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(-16, 1, 1)
+direction = Vector3(1, -16, 0)
+spread = 25.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+damping_max = 3.0
+scale_min = 0.25
+color_ramp = SubResource("GradientTexture1D_odx6h")
 
 [sub_resource type="Animation" id="Animation_42q8f"]
 resource_name = "Idle"
@@ -65,12 +98,24 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13eyb"]
-size = Vector2(27, 24)
+size = Vector2(27, 26)
 
 [node name="Tank" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
 collision_mask = 4
 script = ExtResource("1_7f80w")
 weapon = NodePath("Weapon")
+
+[node name="RightTrackParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 15)
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_kfnf6")
+
+[node name="LeftTrackParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, -14)
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_xrp3h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
