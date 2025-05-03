@@ -37,8 +37,8 @@ func _on_reloaded() -> void:
 
 
 func _on_music_slider_value_changed(value: float) -> void:
-	#print("_on_music_slider_value_changed - value = " , value)
-	#print("MUSIC_BUS_ID = ",MUSIC_BUS_ID )
+	print("_on_music_slider_value_changed - value = " , value)
+	print("MUSIC_BUS_ID = ",MUSIC_BUS_ID )
 	AudioServer.set_bus_volume_db(MUSIC_BUS_ID, linear_to_db(value))
 	AudioServer.set_bus_mute(MUSIC_BUS_ID, value< 0.05)
 	

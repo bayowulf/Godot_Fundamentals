@@ -23,20 +23,19 @@ func change_state(new_state: STATES):
 	state = new_state
 	
 func fire():
-	print("weapon/func fire. FIRST PRINT  STATE = ", state)
 	if state == STATES.FIRING || state == STATES.RELOADING:
 		return
+		
 	change_state(STATES.FIRING)
-	print("weapon/func fire. SECOND PRINT  STATE = ", state)
 	# Create a bullet at our position and set its direction
 	var bullet = BULLET_SCENE.instantiate()
 	bullet.direction = Vector2.from_angle(global_rotation)
 	bullet.global_position = global_position
 	audio_player.play()
-	# Add bullet to root scene so that translation is in world space
+	# Add bullt to root scene so that translation is in world space
 	get_tree().root.add_child(bullet)
 	
-	#set our state to reload and start our timer
+	#set our state to reload and start out timer
 	change_state(STATES.RELOADING)
 	reload_timer.start()
 	

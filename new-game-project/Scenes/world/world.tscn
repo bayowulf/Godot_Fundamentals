@@ -665,7 +665,6 @@ texture = ExtResource("1_g0k8s")
 2:7/0/terrains_peering_bit/top_right_corner = 2
 2:7/0/custom_data_0 = 0.25
 2:7/0/custom_data_1 = 1
-2:7/0/custom_data_2 = true
 3:7/0 = 0
 3:7/0/terrain_set = 0
 3:7/0/terrain = 2
@@ -783,8 +782,6 @@ custom_data_layer_0/name = "speed_modifier"
 custom_data_layer_0/type = 3
 custom_data_layer_1/name = "tile_type"
 custom_data_layer_1/type = 2
-custom_data_layer_2/name = "is_water"
-custom_data_layer_2/type = 1
 sources/2 = SubResource("TileSetAtlasSource_fbtbp")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5a7ea"]
